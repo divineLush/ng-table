@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { GetUsers } from 'src/ngxs/users/users.actions';
+import { DeleteUser, GetUsers } from 'src/ngxs/users/users.actions';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +10,9 @@ import { GetUsers } from 'src/ngxs/users/users.actions';
 export class AppComponent {
   constructor(private store: Store) {
     this.store.dispatch(new GetUsers());
+  }
+
+  deleteUser(userId: string) {
+    this.store.dispatch(new DeleteUser(userId));
   }
 }

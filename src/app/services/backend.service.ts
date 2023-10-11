@@ -1,6 +1,5 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import User from '../interfaces/user';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class BackendService {
     return this.http.get('/api/user');
   }
 
-  addUser(user: User) {
-    return this.http.post('/api/user', user);
+  deleteUser(userId: string) {
+    return this.http.delete(`/api/user/${userId}`);
   }
 }
