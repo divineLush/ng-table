@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { GetUsers } from 'src/ngxs/users/users.actions';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng-table';
+  constructor(private store: Store) {
+    this.store.dispatch(new GetUsers());
+  }
 }
