@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { DeleteUser, GetUsers } from 'src/ngxs/users/users.actions';
+import { GetUsers, DeleteUser } from './ngxs/users/users.actions';
 
 @Component({
   selector: 'app-root',
