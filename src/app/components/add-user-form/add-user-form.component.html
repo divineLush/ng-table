@@ -1,0 +1,48 @@
+<form [formGroup]="form" class="add-user-form" (submit)="onSubmit()">
+  <div class="add-user-form__inputs">
+    <mat-form-field>
+      <mat-label>Имя</mat-label>
+      <input matInput formControlName="firstname" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Фамилия</mat-label>
+      <input matInput formControlName="lastname" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Возраст</mat-label>
+      <input matInput formControlName="age" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Пол</mat-label>
+      <input matInput formControlName="gender" />
+    </mat-form-field>
+  </div>
+
+  <div class="add-user-form__footer">
+    <button
+      class="add-user-form__submit"
+      mat-button
+      color="primary"
+      type="button"
+      (click)="onReset()"
+    >
+      Сбросить
+    </button>
+    <button
+      class="add-user-form__submit"
+      mat-flat-button
+      color="primary"
+      type="submit"
+    >
+      Добавить
+    </button>
+  </div>
+</form>
