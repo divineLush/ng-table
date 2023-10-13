@@ -9,8 +9,13 @@ import User from './interfaces/user';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  isLoading = false;
+
   constructor(private store: Store) {
-    this.store.dispatch(new GetUsers());
+    this.isLoading = true;
+    this.store.dispatch(new GetUsers()).subscribe(() => {
+      this.isLoading = false;
+    });
   }
 
   deleteUser(userId: string) {

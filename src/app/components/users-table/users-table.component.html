@@ -1,32 +1,28 @@
-<!-- <div *ngFor="let user of (users$ | async)"> -->
-<!--   {{ user?.firstname }} -->
-<!-- </div> -->
-
 <ng-container *ngIf="(users$ | async)?.length">
   <table mat-table [dataSource]="users$">
     <ng-container matColumnDef="firstname">
       <th mat-header-cell *matHeaderCellDef>Имя</th>
-      <td mat-cell *matCellDef="let element">{{ element?.firstname }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.firstname | emptyText }}</td>
     </ng-container>
 
     <ng-container matColumnDef="lastname">
       <th mat-header-cell *matHeaderCellDef>Фамилия</th>
-      <td mat-cell *matCellDef="let element">{{ element?.lastname }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.lastname | emptyText }}</td>
     </ng-container>
 
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef>Email</th>
-      <td mat-cell *matCellDef="let element">{{ element?.email }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.email | emptyText }}</td>
     </ng-container>
 
     <ng-container matColumnDef="age">
       <th mat-header-cell *matHeaderCellDef>Возраст</th>
-      <td mat-cell *matCellDef="let element">{{ element?.age }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.age | emptyText }}</td>
     </ng-container>
 
     <ng-container matColumnDef="gender">
       <th mat-header-cell *matHeaderCellDef>Пол</th>
-      <td mat-cell *matCellDef="let element">{{ element?.gender }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.gender | emptyText }}</td>
     </ng-container>
 
     <ng-container matColumnDef="actions">
