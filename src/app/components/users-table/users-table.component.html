@@ -1,4 +1,4 @@
-<ng-container *ngIf="(users$ | async)?.length">
+<ng-container *ngIf="(users$ | async)?.length ; else empty">
   <table mat-table [dataSource]="users$">
     <ng-container matColumnDef="firstname">
       <th mat-header-cell *matHeaderCellDef>Имя</th>
@@ -38,3 +38,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </ng-container>
+
+<ng-template #empty>
+  <h3 class="not-found">Пользователи не найдены</h3>
+</ng-template>

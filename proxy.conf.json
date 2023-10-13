@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://crudcrud.com/api/dae450a731e24773ae8cd56c4858d9d8",
+    "target": "https://crudcrud.com/api/6d41e742d55e4c23906f04c9a1a4988e",
     "secure": true,
     "pathRewrite": {
       "^/api": ""

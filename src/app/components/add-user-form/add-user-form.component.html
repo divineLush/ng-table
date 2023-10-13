@@ -21,23 +21,34 @@
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" />
+      <mat-error
+        *ngIf="form.controls.email.touched && form.controls.email.errors"
+      >Неверный формат
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Возраст</mat-label>
       <input matInput formControlName="age" />
+      <mat-error
+        *ngIf="form.controls.age.touched && form.controls.age.errors"
+      > 18 &lt; Возраст &lt; 99
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Пол</mat-label>
-      <input matInput formControlName="gender" />
+      <mat-select formControlName="gender">
+        <mat-option *ngFor="let g of genders" [value]="g">
+          {{ g }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 
   <div class="add-user-form__footer">
     <button
       class="add-user-form__submit"
-      [disabled]="!form.touched"
       mat-button
       color="primary"
       type="button"
@@ -47,7 +58,7 @@
     </button>
     <button
       class="add-user-form__submit"
-      [disabled]="!form.valid"
+      [disabled]="isLoading"
       mat-flat-button
       color="primary"
       type="submit"

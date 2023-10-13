@@ -1,4 +1,4 @@
-<add-user-form  class="add-user-form" (formSubmit)="addUser($event)"></add-user-form>
+<add-user-form class="add-user-form"></add-user-form>
 
 <users-table *ngIf="!isLoading ; else spinner" (delete)="deleteUser($event)"></users-table>
 
