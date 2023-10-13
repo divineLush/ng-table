@@ -1,12 +1,18 @@
-<add-user-form class="add-user-form"></add-user-form>
+<main>
+  <section class="add-user-form">
+    <add-user-form class="add-user-form"></add-user-form>
+  </section>
 
-<users-table
-  *ngIf="!isLoading; else spinner"
-  (delete)="deleteUser($event)"
-></users-table>
+  <section>
+    <users-table
+      *ngIf="!isLoading; else spinner"
+      (delete)="deleteUser($event)"
+    ></users-table>
 
-<ng-template #spinner>
-  <div class="spinner-wrapper">
-    <mat-spinner></mat-spinner>
-  </div>
-</ng-template>
+    <ng-template #spinner>
+      <div class="spinner-wrapper">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </section>
+</main>
