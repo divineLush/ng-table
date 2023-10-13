@@ -22,7 +22,7 @@ export class AddUserFormComponent {
       firstname: new FormControl(null, Validators.required),
       lastname: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.email),
-      age: new FormControl(null, [Validators.min(18), Validators.max(99), Validators.pattern('[0-9+]')]),
+      age: new FormControl(null, [Validators.min(18), Validators.max(99), Validators.pattern('^[0-9]*$')]),
       gender: new FormControl(null),
     });
   }
