@@ -6,6 +6,7 @@
   <section>
     <users-table
       *ngIf="!isLoading; else spinner"
+      [users]="users$ | async"
       (delete)="deleteUser($event)"
     ></users-table>
 

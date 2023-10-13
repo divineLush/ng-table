@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import User from 'src/app/interfaces/user';
+
 @Component({
   selector: 'users-table',
   templateUrl: './users-table.component.html',
@@ -16,13 +16,9 @@ export class UsersTableComponent {
     'actions',
   ];
 
-  users$: Observable<any>;
+  @Input() users: User[] | null = [];
 
   @Output() delete: EventEmitter<string> = new EventEmitter();
-
-  constructor(private store: Store) {
-    this.users$ = this.store.select((state) => state.users.users);
-  }
 
   onDelete(userId: string) {
     this.delete.emit(userId);
