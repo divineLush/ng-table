@@ -1,4 +1,4 @@
-import User from "src/app/interfaces/user";
+import User from 'src/app/interfaces/user';
 
 export class GetUsers {
   static readonly type = 'GetUsers';

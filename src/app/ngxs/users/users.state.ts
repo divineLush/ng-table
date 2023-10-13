@@ -16,59 +16,53 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 @Injectable()
 export class UsersState {
-  constructor(private readonly backend: BackendService, private readonly snackbar: SnackbarService) {}
+  constructor(
+    private readonly backend: BackendService,
+    private readonly snackbar: SnackbarService,
+  ) {}
 
   @Action(GetUsers)
   getUsers(ctx: StateContext<UsersStateModel>) {
     return this.backend.getUsers().pipe(
-        tap(
-          (users) => {
-            ctx.setState({ users: users as User[] });
-          }),
-        catchError(
-          (error: HttpErrorResponse) => {
-            this.snackbar.showMessage(error.message);
-            return of(error);
-          }
-        )
-      );
+      tap((users) => {
+        ctx.setState({ users: users as User[] });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.snackbar.showMessage(error.message);
+        return of(error);
+      }),
+    );
   }
 
   @Action(AddUser)
   addUser(ctx: StateContext<UsersStateModel>, { user }: { user: User }) {
     return this.backend.addUser(user).pipe(
-      tap(
-        () => {
-          this.snackbar.showMessage('Пользователь успешно добавлен!');
-          const users = [...ctx.getState().users, user];
-          ctx.setState({ users });
-        }),
-        catchError(
-          (error: HttpErrorResponse) => {
-            this.snackbar.showMessage(error.message);
-            return of(error);
-          }
-        )
-      );
+      tap(() => {
+        this.snackbar.showMessage('Пользователь успешно добавлен!');
+        const users = [...ctx.getState().users, user];
+        ctx.setState({ users });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.snackbar.showMessage(error.message);
+        return of(error);
+      }),
+    );
   }
 
   @Action(DeleteUser)
   deleteUser(ctx: StateContext<UsersStateModel>, userId: { userId: string }) {
     return this.backend.deleteUser(userId.userId).pipe(
-      tap(
-        () => {
-          this.snackbar.showMessage('Пользователь успешно удален!');
-          const users = ctx
-            .getState()
-            .users.filter((user) => user._id !== userId.userId);
-          ctx.setState({ users });
-        }),
-        catchError(
-          (error: HttpErrorResponse) => {
-            this.snackbar.showMessage(error.message);
-            return of(error);
-          }
-        )
-      );
+      tap(() => {
+        this.snackbar.showMessage('Пользователь успешно удален!');
+        const users = ctx
+          .getState()
+          .users.filter((user) => user._id !== userId.userId);
+        ctx.setState({ users });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.snackbar.showMessage(error.message);
+        return of(error);
+      }),
+    );
   }
 }

@@ -21,7 +21,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmptyTextPipe } from './pipes/empty-text.pipe';
 
 @NgModule({
-  declarations: [AppComponent, UsersTableComponent, AddUserFormComponent, EmptyTextPipe],
+  declarations: [
+    AppComponent,
+    UsersTableComponent,
+    AddUserFormComponent,
+    EmptyTextPipe,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

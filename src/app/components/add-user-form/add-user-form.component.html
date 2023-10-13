@@ -4,8 +4,10 @@
       <mat-label>Имя</mat-label>
       <input matInput formControlName="firstname" />
       <mat-error
-        *ngIf="form.controls.firstname.touched && form.controls.firstname.errors"
-      >Обязательное поле
+        *ngIf="
+          form.controls.firstname.touched && form.controls.firstname.errors
+        "
+        >Обязательное поле
       </mat-error>
     </mat-form-field>
 
@@ -14,7 +16,7 @@
       <input matInput formControlName="lastname" />
       <mat-error
         *ngIf="form.controls.lastname.touched && form.controls.lastname.errors"
-      >Обязательное поле
+        >Обязательное поле
       </mat-error>
     </mat-form-field>
 
@@ -23,16 +25,15 @@
       <input matInput formControlName="email" />
       <mat-error
         *ngIf="form.controls.email.touched && form.controls.email.errors"
-      >Неверный формат
+        >Неверный формат
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Возраст</mat-label>
       <input matInput formControlName="age" />
-      <mat-error
-        *ngIf="form.controls.age.touched && form.controls.age.errors"
-      > 18 &lt; Возраст &lt; 99
+      <mat-error *ngIf="form.controls.age.touched && form.controls.age.errors">
+        18 &lt; Возраст &lt; 99
       </mat-error>
     </mat-form-field>
 

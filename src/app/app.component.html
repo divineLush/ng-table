@@ -1,6 +1,9 @@
 <add-user-form class="add-user-form"></add-user-form>
 
-<users-table *ngIf="!isLoading ; else spinner" (delete)="deleteUser($event)"></users-table>
+<users-table
+  *ngIf="!isLoading; else spinner"
+  (delete)="deleteUser($event)"
+></users-table>
 
 <ng-template #spinner>
   <div class="spinner-wrapper">

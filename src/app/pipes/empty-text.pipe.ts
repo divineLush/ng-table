@@ -1,12 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'emptyText'
+  name: 'emptyText',
 })
 export class EmptyTextPipe implements PipeTransform {
-
   transform(value: string | null): unknown {
     return value ?? '-';
   }
-
 }
