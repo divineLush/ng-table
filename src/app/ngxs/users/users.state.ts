@@ -5,7 +5,8 @@ import { AddUser, DeleteUser, GetUsers } from './users.actions';
 import { BackendService } from 'src/app/services/backend.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import User from 'src/app/interfaces/user';
-import { tap } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @State<UsersStateModel>({
   name: 'users',
@@ -20,10 +21,16 @@ export class UsersState {
   @Action(GetUsers)
   getUsers(ctx: StateContext<UsersStateModel>) {
     return this.backend.getUsers().pipe(
-      tap(
-        (users) => {
-          ctx.setState({ users: users as User[] });
-        })
+        tap(
+          (users) => {
+            ctx.setState({ users: users as User[] });
+          }),
+        catchError(
+          (error: HttpErrorResponse) => {
+            this.snackbar.showMessage(error.message);
+            return of(error);
+          }
+        )
       );
   }
 
@@ -35,7 +42,13 @@ export class UsersState {
           this.snackbar.showMessage('Пользователь успешно добавлен!');
           const users = [...ctx.getState().users, user];
           ctx.setState({ users });
-        })
+        }),
+        catchError(
+          (error: HttpErrorResponse) => {
+            this.snackbar.showMessage(error.message);
+            return of(error);
+          }
+        )
       );
   }
 
@@ -49,7 +62,13 @@ export class UsersState {
             .getState()
             .users.filter((user) => user._id !== userId.userId);
           ctx.setState({ users });
-        })
+        }),
+        catchError(
+          (error: HttpErrorResponse) => {
+            this.snackbar.showMessage(error.message);
+            return of(error);
+          }
+        )
       );
   }
 }

@@ -3,11 +3,19 @@
     <mat-form-field>
       <mat-label>Имя</mat-label>
       <input matInput formControlName="firstname" />
+      <mat-error
+        *ngIf="form.controls.firstname.touched && form.controls.firstname.errors"
+      >Обязательное поле
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Фамилия</mat-label>
       <input matInput formControlName="lastname" />
+      <mat-error
+        *ngIf="form.controls.lastname.touched && form.controls.lastname.errors"
+      >Обязательное поле
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -29,6 +37,7 @@
   <div class="add-user-form__footer">
     <button
       class="add-user-form__submit"
+      [disabled]="!form.touched"
       mat-button
       color="primary"
       type="button"
@@ -38,6 +47,7 @@
     </button>
     <button
       class="add-user-form__submit"
+      [disabled]="!form.valid"
       mat-flat-button
       color="primary"
       type="submit"
