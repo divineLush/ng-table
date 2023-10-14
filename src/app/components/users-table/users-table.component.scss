@@ -1,11 +1,15 @@
 td {
   padding: 4px 8px;
   width: 16%;
+  width: 150px;
+}
+
+mat-form-field {
+  width: 150px;
 }
 
 .action-buttons {
   display: flex;
-  flex-direction: column;
   gap: 8px;
 }
 

@@ -51,6 +51,7 @@ export class UsersState {
 
   @Action(EditUser)
   editUser(ctx: StateContext<UsersStateModel>, { user }: { user: User }) {
+    console.log(user);
     return this.backend.editUser(user).pipe(
       tap(() => {
         this.snackbar.showMessage('Пользователь успешно отредактирован!');

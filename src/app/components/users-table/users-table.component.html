@@ -85,23 +85,23 @@
         <div class="action-buttons">
           <button
             *ngIf="element.isEditable; else editBtn"
-            mat-flat-button
+            mat-icon-button
             (click)="onSave(element)"
           >
-            Сохранить
+            <mat-icon>save</mat-icon>
           </button>
 
           <ng-template #editBtn>
             <button
-              mat-flat-button
+              mat-icon-button
               (click)="element.isEditable = !element.isEditable"
             >
-              Редактировать
+              <mat-icon>edit</mat-icon>
             </button>
           </ng-template>
 
-          <button mat-flat-button color="warn" (click)="onDelete(element._id)">
-            Удалить
+          <button mat-icon-button color="warn" (click)="onDelete(element._id)">
+            <mat-icon>delete</mat-icon>
           </button>
         </div>
       </td>

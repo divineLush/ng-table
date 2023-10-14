@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 import { HttpClientModule } from '@angular/common/http';
 import { UsersState } from './ngxs/users/users.state';
@@ -37,6 +38,7 @@ import { EmptyTextPipe } from './pipes/empty-text.pipe';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatIconModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

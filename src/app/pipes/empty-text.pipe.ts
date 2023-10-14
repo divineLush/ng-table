@@ -5,6 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EmptyTextPipe implements PipeTransform {
   transform(value: string | null): unknown {
-    return value ?? '-';
+    return !value || !value.length ? '-' : value;
   }
 }
