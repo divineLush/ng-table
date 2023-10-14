@@ -100,7 +100,7 @@
             </button>
           </ng-template>
 
-          <button mat-icon-button color="warn" (click)="onDelete(element._id)">
+          <button mat-icon-button color="warn" [disabled]="element.isDeleteLoading" (click)="onDelete(element)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>

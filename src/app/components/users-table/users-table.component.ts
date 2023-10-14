@@ -31,7 +31,7 @@ export class UsersTableComponent {
       .select((state) => state.users.users)
       .pipe(
         map((users) =>
-          users.map((user: User) => ({ ...user, isEditable: false })),
+          users.map((user: User) => ({ ...user, isEditable: false, isDeleteLoading: false })),
         ),
       );
   }
@@ -41,7 +41,14 @@ export class UsersTableComponent {
     this.store.dispatch(new EditUser(user));
   }
 
-  onDelete(userId: string) {
-    this.store.dispatch(new DeleteUser(userId));
+  onDelete(user: User) {
+    if (!user._id) {
+      return;
+    }
+
+    user.isDeleteLoading = true;
+    this.store.dispatch(new DeleteUser(user._id)).subscribe(() => {
+      user.isDeleteLoading = false;
+    });
   }
 }

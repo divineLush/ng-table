@@ -6,4 +6,5 @@ export default interface User {
   age?: string;
   gender?: string;
   isEditable?: boolean;
+  isDeleteLoading?: boolean;
 }
