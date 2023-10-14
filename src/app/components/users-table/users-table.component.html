@@ -86,6 +86,7 @@
           <button
             *ngIf="element.isEditable; else editBtn"
             mat-icon-button
+            [disabled]="element.isEditLoading"
             (click)="onSave(element)"
           >
             <mat-icon>save</mat-icon>
@@ -100,7 +101,12 @@
             </button>
           </ng-template>
 
-          <button mat-icon-button color="warn" [disabled]="element.isDeleteLoading" (click)="onDelete(element)">
+          <button
+            mat-icon-button
+            color="warn"
+            [disabled]="element.isDeleteLoading"
+            (click)="onDelete(element)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </div>

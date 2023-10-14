@@ -31,14 +31,22 @@ export class UsersTableComponent {
       .select((state) => state.users.users)
       .pipe(
         map((users) =>
-          users.map((user: User) => ({ ...user, isEditable: false, isDeleteLoading: false })),
+          users.map((user: User) => ({
+            ...user,
+            isEditable: false,
+            isEditLoading: false,
+            isDeleteLoading: false,
+          })),
         ),
       );
   }
 
   onSave(user: User) {
-    user.isEditable = false;
-    this.store.dispatch(new EditUser(user));
+    user.isEditLoading = true;
+    this.store.dispatch(new EditUser(user)).subscribe(() => {
+      user.isEditLoading = false;
+      user.isEditable = false;
+    });
   }
 
   onDelete(user: User) {
