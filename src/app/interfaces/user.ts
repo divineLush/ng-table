@@ -5,4 +5,5 @@ export default interface User {
   email?: string;
   age?: string;
   gender?: string;
+  isEditable?: boolean;
 }

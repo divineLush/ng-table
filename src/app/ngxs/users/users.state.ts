@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
 import UsersStateModel from './users.model';
-import { AddUser, DeleteUser, GetUsers } from './users.actions';
+import { AddUser, DeleteUser, EditUser, GetUsers } from './users.actions';
 import { BackendService } from 'src/app/services/backend.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import User from 'src/app/interfaces/user';
@@ -43,6 +43,24 @@ export class UsersState {
         ctx.setState({ users });
       }),
       catchError((error: HttpErrorResponse) => {
+        this.snackbar.showMessage(error.message);
+        return of(error);
+      }),
+    );
+  }
+
+  @Action(EditUser)
+  editUser(ctx: StateContext<UsersStateModel>, { user }: { user: User }) {
+    return this.backend.editUser(user).pipe(
+      tap(() => {
+        this.snackbar.showMessage('Пользователь успешно отредактирован!');
+        const users = ctx
+          .getState()
+          .users.map((u) => (u._id !== user._id ? u : user));
+        ctx.setState({ users });
+      }),
+      catchError((error: HttpErrorResponse) => {
+        console.log(error);
         this.snackbar.showMessage(error.message);
         return of(error);
       }),

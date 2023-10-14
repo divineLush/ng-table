@@ -4,11 +4,7 @@
   </section>
 
   <section>
-    <users-table
-      *ngIf="!isLoading; else spinner"
-      [users]="users$ | async"
-      (delete)="deleteUser($event)"
-    ></users-table>
+    <users-table *ngIf="!isLoading; else spinner"></users-table>
 
     <ng-template #spinner>
       <div class="spinner-wrapper">

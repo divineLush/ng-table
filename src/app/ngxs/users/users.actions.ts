@@ -10,6 +10,12 @@ export class AddUser {
   constructor(public user: User) {}
 }
 
+export class EditUser {
+  static readonly type = 'EditUser';
+
+  constructor(public user: User) {}
+}
+
 export class DeleteUser {
   static readonly type = 'DeleteUser';
 

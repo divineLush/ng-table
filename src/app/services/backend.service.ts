@@ -18,6 +18,17 @@ export class BackendService {
     return this.http.post(this.API_BASE_URL, user);
   }
 
+  editUser(user: User) {
+    const payload = {
+      firstname: user.firstname,
+      lastname: user.lastname,
+      email: user.email,
+      age: user.age,
+      gender: user.gender,
+    };
+    return this.http.put(`${this.API_BASE_URL}/${user._id}`, payload);
+  }
+
   deleteUser(userId: string) {
     return this.http.delete(`${this.API_BASE_URL}/${userId}`);
   }
