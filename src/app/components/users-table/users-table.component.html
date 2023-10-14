@@ -4,7 +4,7 @@
       <th mat-header-cell *matHeaderCellDef>Имя</th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="element.isEditable; else firstname">
-          <mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
             <mat-label>Имя</mat-label>
             <input matInput [(ngModel)]="element.firstname" />
           </mat-form-field>
@@ -19,7 +19,7 @@
       <th mat-header-cell *matHeaderCellDef>Фамилия</th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="element.isEditable; else lastname">
-          <mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
             <mat-label>Фамилия</mat-label>
             <input matInput [(ngModel)]="element.lastname" />
           </mat-form-field>
@@ -34,7 +34,7 @@
       <th mat-header-cell *matHeaderCellDef>Email</th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="element.isEditable; else email">
-          <mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
             <mat-label>Email</mat-label>
             <input matInput [(ngModel)]="element.email" />
           </mat-form-field>
@@ -49,7 +49,7 @@
       <th mat-header-cell *matHeaderCellDef>Возраст</th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="element.isEditable; else age">
-          <mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
             <mat-label>Возраст</mat-label>
             <input matInput [(ngModel)]="element.age" />
           </mat-form-field>
@@ -64,7 +64,7 @@
       <th mat-header-cell *matHeaderCellDef>Пол</th>
       <td mat-cell *matCellDef="let element">
         <ng-container *ngIf="element.isEditable; else gender">
-          <mat-form-field>
+          <mat-form-field subscriptSizing="dynamic">
             <mat-label>Пол</mat-label>
             <mat-select [(ngModel)]="element.gender">
               <mat-option *ngFor="let g of genders" [value]="g">
