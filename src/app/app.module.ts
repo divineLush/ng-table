@@ -20,6 +20,8 @@ import { UsersTableComponent } from './components/users-table/users-table.compon
 import { AddUserFormComponent } from './components/add-user-form/add-user-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmptyTextPipe } from './pipes/empty-text.pipe';
+import { SnackbarService } from './services/snackbar.service';
+import { BackendService } from './services/backend.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,7 @@ import { EmptyTextPipe } from './pipes/empty-text.pipe';
     HttpClientModule,
     NgxsModule.forRoot([UsersState]),
   ],
-  providers: [],
+  providers: [SnackbarService, BackendService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
