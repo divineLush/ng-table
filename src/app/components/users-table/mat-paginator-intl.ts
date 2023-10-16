@@ -22,7 +22,7 @@ export class MatPaginatorIntlCustom extends MatPaginatorIntl {
         startIndex < lengthMax
           ? Math.min(startIndex + pageSize, lengthMax)
           : startIndex + pageSize;
-      return startIndex + 1 + ' - ' + endIndex + ' из ' + lengthMax;
+      return `${startIndex + 1} - ${endIndex} из ${lengthMax}`;
     };
   }
 }
