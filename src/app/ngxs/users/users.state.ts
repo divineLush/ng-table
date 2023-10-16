@@ -37,9 +37,9 @@ export class UsersState {
   @Action(AddUser)
   addUser(ctx: StateContext<UsersStateModel>, { user }: { user: User }) {
     return this.backend.addUser(user).pipe(
-      tap(() => {
+      tap((newUser) => {
         this.snackbar.showMessage('Пользователь успешно добавлен!');
-        const users = [...ctx.getState().users, user];
+        const users = [...ctx.getState().users, newUser];
         ctx.setState({ users });
       }),
       catchError((error: HttpErrorResponse) => {
@@ -51,7 +51,6 @@ export class UsersState {
 
   @Action(EditUser)
   editUser(ctx: StateContext<UsersStateModel>, { user }: { user: User }) {
-    console.log(user);
     return this.backend.editUser(user).pipe(
       tap(() => {
         this.snackbar.showMessage('Пользователь успешно отредактирован!');
@@ -61,7 +60,6 @@ export class UsersState {
         ctx.setState({ users });
       }),
       catchError((error: HttpErrorResponse) => {
-        console.log(error);
         this.snackbar.showMessage(error.message);
         return of(error);
       }),

@@ -49,10 +49,15 @@ export class AddUserFormComponent {
     this.isLoading = true;
     this.store.dispatch(new AddUser(this.form.value as User)).subscribe(() => {
       this.isLoading = false;
+      this.onReset();
     });
   }
 
   onReset() {
     this.form.reset();
+    Object.keys(this.form.controls).forEach((key) => {
+      const control = this.form.get(key);
+      control?.setErrors(null);
+    });
   }
 }
