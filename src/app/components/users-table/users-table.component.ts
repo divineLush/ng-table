@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngxs/store';
 import { Observable, map } from 'rxjs';
@@ -20,24 +21,32 @@ export class UsersTableComponent {
     'actions',
   ];
 
-  users$: Observable<any[]>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  @Output() delete: EventEmitter<string> = new EventEmitter();
+  users$: Observable<MatTableDataSource<User>>;
 
   readonly genders = ['Мужской', 'Женский'];
 
-  constructor(private store: Store) {
+  constructor(
+    private store: Store,
+    private cdr: ChangeDetectorRef,
+  ) {
     this.users$ = this.store
       .select((state) => state.users.users)
       .pipe(
-        map((users) =>
-          users.map((user: User) => ({
+        map((users) => {
+          const data = users.map((user: User) => ({
             ...user,
             isEditable: false,
             isEditLoading: false,
             isDeleteLoading: false,
-          })),
-        ),
+          }));
+          const dataSource = new MatTableDataSource<User>(data);
+          this.cdr.detectChanges();
+          dataSource.paginator = this.paginator;
+
+          return dataSource;
+        }),
       );
   }
 

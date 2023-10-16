@@ -1,5 +1,7 @@
-<ng-container *ngIf="(users$ | async)?.length; else empty">
-  <table mat-table [dataSource]="users$">
+<ng-container
+  *ngIf="(users$ | async)?.data && (users$ | async)?.data?.length; else empty"
+>
+  <table mat-table [dataSource]="(users$ | async) ?? []">
     <ng-container matColumnDef="firstname">
       <th mat-header-cell *matHeaderCellDef>Имя</th>
       <td mat-cell *matCellDef="let element">
@@ -116,6 +118,12 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <mat-paginator
+    [length]="(users$ | async)?.data?.length"
+    pageSize="5"
+    showFirstLastButtons
+  ></mat-paginator>
 </ng-container>
 
 <ng-template #empty>

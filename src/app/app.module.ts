@@ -13,6 +13,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  MatPaginatorModule,
+  MatPaginatorIntl,
+} from '@angular/material/paginator';
 
 import { HttpClientModule } from '@angular/common/http';
 import { UsersState } from './ngxs/users/users.state';
@@ -22,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmptyTextPipe } from './pipes/empty-text.pipe';
 import { SnackbarService } from './services/snackbar.service';
 import { BackendService } from './services/backend.service';
+import { MatPaginatorIntlCustom } from './components/users-table/mat-paginator-intl';
 
 @NgModule({
   declarations: [
@@ -41,12 +46,17 @@ import { BackendService } from './services/backend.service';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatIconModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxsModule.forRoot([UsersState]),
   ],
-  providers: [SnackbarService, BackendService],
+  providers: [
+    SnackbarService,
+    BackendService,
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCustom },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
